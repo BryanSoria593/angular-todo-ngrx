@@ -29,6 +29,5 @@ import { GeneralService } from './services/general.service'
     TodoRoutingModule,
     MaterialModule
   ],
-  providers: [GeneralService]
 })
 export class TodoModule { }

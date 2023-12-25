@@ -13,7 +13,7 @@ export class TodoService {
   constructor(private http: HttpClient,) { }
 
 
-  getTodos(): Observable<Object> {
+  getTodos(): Observable<any> {
     return this.http.get(`${this.API}/getAll`)
   }
 

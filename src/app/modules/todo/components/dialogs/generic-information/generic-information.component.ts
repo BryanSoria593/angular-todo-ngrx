@@ -8,7 +8,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class GenericInformationComponent implements OnInit {
 
   constructor(
-    private dialogRef: MatDialogRef<GenericInformationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 

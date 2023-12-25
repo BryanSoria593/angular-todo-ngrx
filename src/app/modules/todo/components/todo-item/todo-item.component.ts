@@ -6,6 +6,9 @@ import { TodoService } from '../../services/todo.service';
 import { Observable } from 'rxjs';
 import { ConfirmComponent } from '../dialogs/confirm/confirm.component';
 import { GeneralService } from '../../services/general.service';
+import { AppState } from 'src/app/state/app.state';
+import { Store } from '@ngrx/store';
+import { deleteTodoRequest, updateTodoRequest } from 'src/app/state/actions/todo.actions';
 
 @Component({
   selector: 'app-todo-item',
@@ -14,13 +17,14 @@ import { GeneralService } from '../../services/general.service';
 })
 export class TodoItemComponent implements OnInit {
 
-  @Input() tasks: any = []
+  @Input() tasks: Observable<Todo[]> = new Observable()
   @Input() title: string = ''
 
   constructor(
     private dialog: MatDialog,
     private todoService: TodoService,
-    private generalService: GeneralService
+    private generalService: GeneralService,
+    private store: Store<AppState>
   ) { }
 
   ngOnInit(): void { }
@@ -39,8 +43,8 @@ export class TodoItemComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (!result) return
+      this.store.dispatch(updateTodoRequest({ _id: todo._id, todo: result }))
     })
-
   }
 
   deleteTodo(id: string) {
@@ -55,12 +59,11 @@ export class TodoItemComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (!result) return
-
+      this.store.dispatch(deleteTodoRequest({ _id: id }))
     });
   }
 
-  updateStatus(nuevoEstado: number, id: string) {
-
-
+  updateStatus(newStatus: number, id: string) {
+    this.store.dispatch(updateTodoRequest({ _id: id, todo: { statusId: newStatus } }))
   }
 }
