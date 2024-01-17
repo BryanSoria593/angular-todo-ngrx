@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core'
 import { ModalTodoComponent } from '../../components/modal-todo/modal-todo.component'
 import { MatDialog } from '@angular/material/dialog'
-import { TodoService } from '../../services/todo.service'
 import { Todo } from 'src/app/core/interfaces/todo-interface'
-import { GeneralService } from '../../services/general.service'
 import { AppState } from 'src/app/state/app.state'
 import { Store } from '@ngrx/store'
-import { createTodoRequest, getTodosRequest } from '../../../../state/actions/todo.actions'
+import { createTodoRequest, getTodosRequest } from 'src/app/state/actions/todo.actions'
 import { Observable } from 'rxjs'
 import { selectTodosDone, selectTodosInProgress, selectTodosPending } from 'src/app/state/selectors/todo.selectors'
 @Component({
@@ -15,10 +13,6 @@ import { selectTodosDone, selectTodosInProgress, selectTodosPending } from 'src/
 })
 export class HomeComponent implements OnInit {
 
-  // tasksCreated: Todo[] = []
-  // tasksCreated: Observable<Todo[]> = this.store.select(selectTodosPending)
-  // tasksInProgress: Observable<Todo[]> = this.store.select(selectTodosInProgress)
-  // tasksCompleted: Observable<Todo[]> = this.store.select(selectTodosDone)
   tasksCreated: Observable<Todo[]> = new Observable()
   tasksInProgress: Observable<Todo[]> = new Observable()
   tasksCompleted: Observable<Todo[]> = new Observable()
@@ -26,19 +20,15 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private todoService: TodoService,
-    private generalService: GeneralService,
-    private store: Store<AppState>
+    private store: Store<AppState> // Inyecta el servicio Store de NgRx para gestionar el estado de la aplicación
   ) { }
 
   ngOnInit(): void {
-    this.store.dispatch(getTodosRequest())
-    this.tasksCreated = this.store.select(selectTodosPending)
-    this.tasksInProgress = this.store.select(selectTodosInProgress)
-    this.tasksCompleted = this.store.select(selectTodosDone)
-
+    this.store.dispatch(getTodosRequest()) // llama a la acción para obtener los todos
+    this.tasksCreated = this.store.select(selectTodosPending) // obtiene los todos pendientes
+    this.tasksInProgress = this.store.select(selectTodosInProgress) // obtiene los todos en progreso
+    this.tasksCompleted = this.store.select(selectTodosDone) // obtiene los todos completados
   }
-
 
   createTodo() {
     const dialogRef = this.dialog.open(ModalTodoComponent, {
@@ -50,9 +40,7 @@ export class HomeComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (!result) return
-      
-      this.store.dispatch(createTodoRequest({todo: result}))
+      this.store.dispatch(createTodoRequest({ todo: result }))
     })
   }
-
 }
