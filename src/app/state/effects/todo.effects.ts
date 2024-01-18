@@ -11,7 +11,6 @@ export class TodosEffects {
     createTodo$ = createEffect(() => this.actions$.pipe(
         ofType(createTodoRequest),
         exhaustMap((action) =>
-        
             this.todoService.createTodo(action.todo)
             .pipe(
                 map((resp: any) => {
@@ -31,8 +30,7 @@ export class TodosEffects {
             this.todoService.getTodos() // Se llama al servicio
                 .pipe( // se tratan los datos obtenidos
                     map((resp) => {
-                        // Se retorna la acción getTodosSuccess con los TODOS obtenidos
-                        
+                        // Se retorna la acción getTodosSuccess con los TODOS obtenidos  
                         return getTodosSuccess({ todos: resp }) // La respuesta se la pasa por props a la acción
                     }),
                     catchError((err) => {
@@ -52,7 +50,6 @@ export class TodosEffects {
             this.todoService.updateTodo(action._id, action.todo) // Se llama al servicio
                 .pipe( // se tratan los datos obtenidos
                     map((resp: any) => {
-
                         return updateTodoSuccess({ todo: resp })
                     }),
                     catchError(() => {

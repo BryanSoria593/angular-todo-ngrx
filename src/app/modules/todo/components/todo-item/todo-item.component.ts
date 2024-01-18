@@ -2,10 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalTodoComponent } from '../modal-todo/modal-todo.component';
 import { Todo } from 'src/app/core/interfaces/todo-interface';
-import { TodoService } from '../../services/todo.service';
 import { Observable } from 'rxjs';
 import { ConfirmComponent } from '../dialogs/confirm/confirm.component';
-import { GeneralService } from '../../services/general.service';
 import { AppState } from 'src/app/state/app.state';
 import { Store } from '@ngrx/store';
 import { deleteTodoRequest, updateTodoRequest } from 'src/app/state/actions/todo.actions';
@@ -22,8 +20,6 @@ export class TodoItemComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private todoService: TodoService,
-    private generalService: GeneralService,
     private store: Store<AppState>
   ) { }
 
