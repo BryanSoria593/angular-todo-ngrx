@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { CreateTodo, Todo, UpdateTodo } from 'src/app/core/interfaces/todo-interface';
+import { CreateTodo, UpdateTodo } from 'src/app/core/interfaces/todo-interface';
 import { environment } from 'src/environments/environment.prod';
 @Injectable({
   providedIn: 'root'

@@ -18,9 +18,7 @@ export class TodoItemComponent implements OnInit {
   @Input() title: string = ''
 
   constructor(
-    private dialog: MatDialog,
-    private todoService: TodoService,
-    private generalService: GeneralService
+    private dialog: MatDialog,    
   ) { }
 
   ngOnInit(): void { }

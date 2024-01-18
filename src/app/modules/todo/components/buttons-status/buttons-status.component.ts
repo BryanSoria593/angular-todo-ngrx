@@ -15,8 +15,8 @@ export class ButtonsStatusComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  changeState(_id: number, nuevoEstado: string) {
-    this.currentState = { _id, name: nuevoEstado }
+  changeState(_id: number, newState: string) {
+    this.currentState = { _id, name: newState }
     this.newState.emit(_id)
   }
 
