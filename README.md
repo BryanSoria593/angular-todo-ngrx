@@ -1,27 +1,32 @@
 # NgrxExample
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.2.
+Este proyecto fue creado con la version 14.2.2 de Angular.
 
-## Development server
+# Aplicación TODO con NgRx
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Este documento proporciona instrucciones detalladas para la instalación de dependencias y la configuración de la ruta de la API para la aplicación. Asegúrese de seguir cada paso cuidadosamente para garantizar una configuración adecuada.
 
-## Code scaffolding
+## 1. Instalar Dependencias
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Ejecute el siguiente comando para instalar todas las dependencias necesarias:
 
-## Build
+```bash
+npm install
+```
+## 2. Modificar ruta de la API
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Originalmente la ruta de la API es http://localhost:3000/api/todo y lo puedes encontrar en el archivo enviroment.prod.ts, pero esto va en relación a el puerto que ejecutes en el servidor de backend, por ejemplo si cambias el puerto deberías modificarlo a tu manera, otro problema que puede surgir es con el localhost, podrías reemplazarlo de las siguientes maneras:
+    
+1. http://127.0.0.1:3000/api/todo
+2. http://ip.de.la.pc:3000/api/todo
 
-## Running unit tests
+## 3. Ejecutar la Aplicación
+Ahora que ha instalado las dependencias y configurado la ruta de la API, puede ejecutar la aplicación. Utilice el siguiente comando:
+```bash
+ng serve
+```
+por defecto esto se ejecutará en el puerto 2000, pero si deseas ejecutarlo en un puerto en específico puedes usar el siguiente comando:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+ng serve --port=4201
+```
